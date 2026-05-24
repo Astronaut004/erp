@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Layers, GraduationCap, Headphones } from "lucide-react";
+import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 
 const pillars = [
@@ -39,25 +40,33 @@ export const PartnerSection = () => (
       <StaggerContainer className="grid md:grid-cols-3 gap-6 mb-10">
         {pillars.map((p) => (
           <StaggerItem key={p.title}>
-            <div className="rounded-2xl border border-border bg-white p-7 shadow-soft h-full">
-              <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+            <motion.div
+              whileHover={{ y: -8, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
+              className="rounded-2xl border border-border bg-white p-7 shadow-soft hover:shadow-card-hover hover:border-primary/20 transition-shadow duration-300 h-full"
+            >
+              <motion.div
+                whileHover={{ scale: 1.12, rotate: -5, transition: { duration: 0.2 } }}
+                className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 inline-flex"
+              >
                 <p.icon size={22} />
-              </div>
+              </motion.div>
               <h3 className="font-bold text-lg mb-2">{p.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
-            </div>
+            </motion.div>
           </StaggerItem>
         ))}
       </StaggerContainer>
 
       <ScrollReveal>
         <div className="text-center">
-          <Link
-            to="/partners"
-            className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-200 text-sm"
-          >
-            Become a partner <ArrowRight size={16} />
-          </Link>
+          <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }} className="inline-flex">
+            <Link
+              to="/partners"
+              className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-200 text-sm"
+            >
+              Become a partner <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </div>
       </ScrollReveal>
     </div>

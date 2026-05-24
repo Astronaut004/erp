@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Check, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 
 const plans = [
@@ -52,57 +53,71 @@ export const PricingTeaser = () => (
       <StaggerContainer className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
         {plans.map((p) => (
           <StaggerItem key={p.name}>
-            <div
-              className={`relative flex flex-col rounded-2xl border p-7 h-full ${
-                p.highlight
-                  ? "border-primary bg-primary/5 shadow-medium"
-                  : "border-border bg-card shadow-soft"
-              }`}
+            <motion.div
+              whileHover={{
+                y: p.highlight ? -10 : -6,
+                scale: p.highlight ? 1.02 : 1.01,
+                transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+              }}
+              whileTap={{ scale: 0.98 }}
+              className="h-full"
             >
-              {p.badge && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#1E1B4B] to-[#4F46E5] text-white text-xs font-semibold px-4 py-1 rounded-full">
-                  {p.badge}
-                </div>
-              )}
-              <div className="mb-5">
-                <h3 className="font-bold text-lg mb-1">{p.name}</h3>
-                <p className="text-sm text-muted-foreground mb-3">{p.desc}</p>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-extrabold">{p.price}</span>
-                  {p.period && <span className="text-sm text-muted-foreground">{p.period}</span>}
-                </div>
-              </div>
-              <ul className="space-y-2.5 mb-6 flex-1">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2.5 text-sm">
-                    <Check size={15} className="text-primary shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to={p.href}
-                className={`w-full text-center py-2.5 rounded-full text-sm font-semibold transition-colors ${
+              <div
+                className={`relative flex flex-col rounded-2xl border p-7 h-full transition-shadow duration-300 ${
                   p.highlight
-                    ? "bg-[#F59E0B] hover:bg-[#D97706] text-white"
-                    : "border border-border hover:bg-slate-50 text-slate-700"
+                    ? "border-primary bg-primary/5 shadow-medium hover:shadow-card-hover"
+                    : "border-border bg-card shadow-soft hover:shadow-card-hover"
                 }`}
               >
-                {p.cta}
-              </Link>
-            </div>
+                {p.badge && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#1E1B4B] to-[#4F46E5] text-white text-xs font-semibold px-4 py-1 rounded-full">
+                    {p.badge}
+                  </div>
+                )}
+                <div className="mb-5">
+                  <h3 className="font-bold text-lg mb-1">{p.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{p.desc}</p>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-extrabold">{p.price}</span>
+                    {p.period && <span className="text-sm text-muted-foreground">{p.period}</span>}
+                  </div>
+                </div>
+                <ul className="space-y-2.5 mb-6 flex-1">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-center gap-2.5 text-sm">
+                      <Check size={15} className="text-primary shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <Link
+                    to={p.href}
+                    className={`block w-full text-center py-2.5 rounded-full text-sm font-semibold transition-colors ${
+                      p.highlight
+                        ? "bg-[#F59E0B] hover:bg-[#D97706] text-white"
+                        : "border border-border hover:bg-slate-50 text-slate-700"
+                    }`}
+                  >
+                    {p.cta}
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
           </StaggerItem>
         ))}
       </StaggerContainer>
 
       <ScrollReveal>
         <div className="text-center">
-          <Link
-            to="/pricing"
-            className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-200 text-sm"
-          >
-            See full pricing & feature comparison <ArrowRight size={16} />
-          </Link>
+          <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }} className="inline-flex">
+            <Link
+              to="/pricing"
+              className="inline-flex items-center gap-2 text-primary font-semibold transition-all duration-200 text-sm hover:gap-3"
+            >
+              See full pricing & feature comparison <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </div>
       </ScrollReveal>
     </div>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, MapPin, Clock, Headphones, Users } from "lucide-react";
-import { ScrollReveal } from "@/components/ScrollReveal";
+import { motion } from "framer-motion";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 
 const highlights = [
   { icon: MapPin, text: "DGI onsite facility support across India" },
@@ -27,27 +28,37 @@ export const DRCHighlight = () => (
             the ground at your location. Rapid implementation, local-language training, and a dedicated
             point of contact from day one through go-live and beyond.
           </p>
-          <Link
-            to="/drc"
-            className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-white font-semibold px-6 py-3 rounded-full transition-colors shadow-lg text-sm"
-          >
-            Learn about DRC <ArrowRight size={16} />
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} className="inline-flex">
+            <Link
+              to="/drc"
+              className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-white font-semibold px-6 py-3 rounded-full transition-colors shadow-lg text-sm"
+            >
+              Learn about DRC <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </ScrollReveal>
 
         <ScrollReveal direction="right">
           <div className="rounded-2xl border border-white/15 bg-white/8 p-7 backdrop-blur-sm">
             <h3 className="text-white font-semibold text-lg mb-6">What DRC includes</h3>
-            <div className="space-y-4">
+            <StaggerContainer className="space-y-4">
               {highlights.map((h) => (
-                <div key={h.text} className="flex items-start gap-4">
-                  <div className="h-9 w-9 rounded-lg bg-[#F59E0B]/20 text-[#F59E0B] flex items-center justify-center shrink-0">
-                    <h.icon size={16} />
-                  </div>
-                  <p className="text-white/80 text-sm leading-relaxed pt-1.5">{h.text}</p>
-                </div>
+                <StaggerItem key={h.text}>
+                  <motion.div
+                    whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                    className="flex items-start gap-4"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.15, rotate: 5, transition: { duration: 0.2 } }}
+                      className="h-9 w-9 rounded-lg bg-[#F59E0B]/20 text-[#F59E0B] flex items-center justify-center shrink-0"
+                    >
+                      <h.icon size={16} />
+                    </motion.div>
+                    <p className="text-white/80 text-sm leading-relaxed pt-1.5">{h.text}</p>
+                  </motion.div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
             <div className="mt-7 pt-6 border-t border-white/10">
               <div className="flex items-start gap-3">
                 <CheckCircle2 size={16} className="text-green-400 mt-0.5 shrink-0" />

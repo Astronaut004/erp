@@ -9,9 +9,9 @@ interface ScrollRevealProps {
 }
 
 const directionMap = {
-  up: { y: 20, x: 0 },
-  left: { y: 0, x: -20 },
-  right: { y: 0, x: 20 },
+  up: { y: 24, x: 0 },
+  left: { y: 0, x: -24 },
+  right: { y: 0, x: 24 },
   none: { y: 0, x: 0 },
 };
 
@@ -35,10 +35,10 @@ export const StaggerContainer = ({ children, className }: { children: ReactNode;
     className={className}
     initial="hidden"
     whileInView="show"
-    viewport={{ once: true, amount: 0.2 }}
+    viewport={{ once: true, amount: 0.15 }}
     variants={{
       hidden: {},
-      show: { transition: { staggerChildren: 0.08 } },
+      show: { transition: { staggerChildren: 0.1 } },
     }}
   >
     {children}
@@ -49,9 +49,20 @@ export const StaggerItem = ({ children, className }: { children: ReactNode; clas
   <motion.div
     className={className}
     variants={{
-      hidden: { opacity: 0, y: 16, filter: "blur(4px)" },
-      show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+      hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+      show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
     }}
+  >
+    {children}
+  </motion.div>
+);
+
+// Hover-lift card wrapper — use inside StaggerItem for interactive cards
+export const MotionCard = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <motion.div
+    className={className}
+    whileHover={{ y: -6, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
+    whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
   >
     {children}
   </motion.div>

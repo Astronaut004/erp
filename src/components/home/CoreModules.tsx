@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Box, CreditCard, Users, Settings, BarChart3, Shield } from "lucide-react";
+import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 
 const modules = [
@@ -63,33 +64,39 @@ export const CoreModules = () => (
       <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {modules.map((m) => (
           <StaggerItem key={m.name}>
-            <Link
-              to={m.href}
-              className="group flex flex-col rounded-2xl border border-border bg-card shadow-soft hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 h-full overflow-hidden"
+            <motion.div
+              whileHover={{ y: -8, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
+              whileTap={{ scale: 0.98 }}
+              className="h-full"
             >
-              {/* Image header */}
-              <div className="relative h-44 overflow-hidden">
-                <img
-                  src={m.image}
-                  alt={m.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/55" />
-                <div className="absolute bottom-3 left-4">
-                  <div className="h-9 w-9 rounded-xl bg-white/20 backdrop-blur-sm text-white flex items-center justify-center">
-                    <m.icon size={20} />
+              <Link
+                to={m.href}
+                className="group flex flex-col rounded-2xl border border-border bg-card shadow-soft hover:shadow-card-hover hover:border-primary/30 transition-shadow duration-300 h-full overflow-hidden"
+              >
+                {/* Image header */}
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={m.image}
+                    alt={m.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/55" />
+                  <div className="absolute bottom-3 left-4">
+                    <div className="h-9 w-9 rounded-xl bg-white/20 backdrop-blur-sm text-white flex items-center justify-center">
+                      <m.icon size={20} />
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* Content */}
-              <div className="flex flex-col gap-3 p-6 flex-1">
-                <h3 className="font-bold text-base">{m.name}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{m.desc}</p>
-                <span className="text-sm font-medium text-primary flex items-center gap-1.5 group-hover:gap-2 transition-all">
-                  Learn more →
-                </span>
-              </div>
-            </Link>
+                {/* Content */}
+                <div className="flex flex-col gap-3 p-6 flex-1">
+                  <h3 className="font-bold text-base">{m.name}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{m.desc}</p>
+                  <span className="text-sm font-medium text-primary flex items-center gap-1.5 group-hover:gap-2.5 transition-all duration-200">
+                    Learn more →
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
           </StaggerItem>
         ))}
       </StaggerContainer>

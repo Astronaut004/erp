@@ -1,4 +1,5 @@
-import { Database, Clock, ShieldCheck } from "lucide-react";
+import { Database, Clock, ShieldCheck, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 
 const items = [
@@ -44,7 +45,10 @@ export const PainSolution = () => (
       <StaggerContainer className="grid md:grid-cols-3 gap-6">
         {items.map((item) => (
           <StaggerItem key={item.problem}>
-            <div className="rounded-2xl border border-border bg-white overflow-hidden shadow-soft h-full flex flex-col">
+            <motion.div
+              whileHover={{ y: -8, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
+              className="rounded-2xl border border-border bg-white overflow-hidden shadow-soft hover:shadow-card-hover transition-shadow duration-300 h-full flex flex-col"
+            >
               {/* Image header */}
               <div className="relative h-40 overflow-hidden">
                 <img
@@ -64,12 +68,15 @@ export const PainSolution = () => (
                 </div>
               </div>
               {/* Solution */}
-              <div className="px-6 py-5 flex-1">
+              <div className="px-6 py-5 flex-1 flex flex-col">
                 <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">LiteLink Solution</p>
                 <p className="font-semibold text-slate-800 mb-2">{item.solution}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.solutionDesc}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.solutionDesc}</p>
+                <div className="flex items-center gap-1 text-primary text-xs font-medium mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ArrowRight size={13} />
+                </div>
               </div>
-            </div>
+            </motion.div>
           </StaggerItem>
         ))}
       </StaggerContainer>

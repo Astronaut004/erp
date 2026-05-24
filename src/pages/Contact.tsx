@@ -5,24 +5,27 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, CheckCircle, Loader2 } from "lucide-react";
 import { useState, useRef } from "react";
 import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
+import { motion, AnimatePresence } from "framer-motion";
 
-// ── EmailJS config ──────────────────────────────────────────────────────────
-// 1. Sign up free at https://www.emailjs.com
-// 2. Create an Email Service (Gmail) → copy the Service ID below
-// 3. Create an Email Template → copy the Template ID below
-//    Template variables to add: {{from_name}}, {{from_email}}, {{company}}, {{message}}
-// 4. Go to Account → API Keys → copy your Public Key below
 const EMAILJS_SERVICE_ID  = "service_px22m4k";
 const EMAILJS_TEMPLATE_ID = "template_kw6hjzl";
 const EMAILJS_PUBLIC_KEY  = "yvoTstHmfHmoJaocm";
-// ────────────────────────────────────────────────────────────────────────────
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
+const contactItems = [
+  { icon: Mail, label: "Email", value: "ac4548817@gmail.com" },
+  { icon: Phone, label: "Phone", value: "+91 9528085" },
+  { icon: MapPin, label: "Office", value: "India · Dubai · Africa" },
+];
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -35,8 +38,10 @@ const Contact = () => {
         publicKey: EMAILJS_PUBLIC_KEY,
       })
       .then(() => {
+        setSent(true);
         toast.success("Message sent! We'll get back to you within 24 hours.");
         formRef.current?.reset();
+        setTimeout(() => setSent(false), 4000);
       })
       .catch(() => {
         toast.error("Something went wrong. Please try again or email us directly.");
@@ -57,6 +62,7 @@ const Contact = () => {
       <section className="py-24 md:py-32 bg-gradient-hero bg-gradient-mesh">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
+            {/* Left: info */}
             <ScrollReveal direction="left">
               <div>
                 <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wider">Contact</p>
@@ -66,27 +72,39 @@ const Contact = () => {
                 </p>
 
                 <div className="space-y-6">
-                  {[
-                    { icon: Mail, label: "Email", value: "ac4548817@gmail.com" },
-                    { icon: Phone, label: "Phone", value: "+91 9528085" },
-                    { icon: MapPin, label: "Office", value: "India · Dubai · Africa" },
-                  ].map((c) => (
-                    <div key={c.label} className="flex items-start gap-4">
-                      <div className="h-10 w-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  {contactItems.map((c, i) => (
+                    <motion.div
+                      key={c.label}
+                      initial={{ opacity: 0, x: -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: i * 0.1, ease }}
+                      className="flex items-start gap-4"
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: -5 }}
+                        transition={{ duration: 0.2 }}
+                        className="h-10 w-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0"
+                      >
                         <c.icon size={18} />
-                      </div>
+                      </motion.div>
                       <div>
                         <p className="text-sm font-medium">{c.label}</p>
                         <p className="text-sm text-muted-foreground">{c.value}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
             </ScrollReveal>
 
+            {/* Right: form */}
             <ScrollReveal direction="right">
-              <form ref={formRef} onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-8 shadow-medium">
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="rounded-2xl border border-border bg-card p-8 shadow-medium"
+              >
                 <h2 className="text-lg font-semibold mb-6">Book a demo</h2>
                 <div className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -109,11 +127,58 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="text-sm font-medium mb-1.5 block">How can we help?</label>
-                    <Textarea required name="message" placeholder="Tell us about your team size, current tools, and what you're looking for…" className="rounded-lg min-h-[100px]" />
+                    <Textarea
+                      required
+                      name="message"
+                      placeholder="Tell us about your team size, current tools, and what you're looking for…"
+                      className="rounded-lg min-h-[100px]"
+                    />
                   </div>
-                  <Button variant="gradient" size="lg" className="w-full" type="submit" disabled={loading}>
-                    {loading ? "Sending…" : "Send Message"}
-                  </Button>
+
+                  <motion.button
+                    type="submit"
+                    disabled={loading || sent}
+                    whileHover={!loading && !sent ? { scale: 1.02 } : {}}
+                    whileTap={!loading && !sent ? { scale: 0.98 } : {}}
+                    transition={{ duration: 0.15 }}
+                    className="w-full py-3 px-6 rounded-lg font-semibold text-sm bg-gradient-to-r from-[#1E1B4B] to-[#4F46E5] text-white shadow-md disabled:opacity-70 transition-opacity flex items-center justify-center gap-2"
+                  >
+                    <AnimatePresence mode="wait" initial={false}>
+                      {sent ? (
+                        <motion.span
+                          key="sent"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
+                          className="flex items-center gap-2"
+                        >
+                          <CheckCircle size={16} className="text-green-300" />
+                          Message Sent!
+                        </motion.span>
+                      ) : loading ? (
+                        <motion.span
+                          key="loading"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-2"
+                        >
+                          <Loader2 size={16} className="animate-spin" />
+                          Sending…
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="idle"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                        >
+                          Send Message
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </motion.button>
+
                   <p className="text-xs text-muted-foreground text-center">We'll respond within one business day.</p>
                 </div>
               </form>

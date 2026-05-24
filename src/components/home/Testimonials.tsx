@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 import { Star } from "lucide-react";
 
@@ -36,15 +37,26 @@ export const Testimonials = () => (
       <StaggerContainer className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {testimonials.map((t) => (
           <StaggerItem key={t.name}>
-            <div className="flex flex-col h-full rounded-2xl border border-border bg-card p-7 shadow-soft">
+            <motion.div
+              whileHover={{ y: -8, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
+              className="flex flex-col h-full rounded-2xl border border-border bg-card p-7 shadow-soft hover:shadow-card-hover transition-shadow duration-300 cursor-default"
+            >
               <div className="flex gap-0.5 mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={14} className="fill-accent text-accent" />
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Star size={14} className="fill-accent text-accent" />
+                  </motion.div>
                 ))}
               </div>
               <p className="text-sm leading-relaxed flex-1 mb-6">"{t.quote}"</p>
               <div className="flex items-center gap-3 pt-4 border-t border-border">
-                <div className="h-9 w-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">
+                <div className="h-9 w-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">
                   {t.initials}
                 </div>
                 <div>
@@ -52,7 +64,7 @@ export const Testimonials = () => (
                   <p className="text-xs text-muted-foreground">{t.role}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </StaggerItem>
         ))}
       </StaggerContainer>

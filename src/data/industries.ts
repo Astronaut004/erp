@@ -33,6 +33,7 @@ export interface IndustryData {
   slug: string;
   label: string;
   icon: LucideIcon;
+  image: string;
   tagline: string;
   desc: string;
   headline: string;
@@ -49,6 +50,7 @@ export const industries: IndustryData[] = [
     slug: "fmcg",
     label: "FMCG",
     icon: Package,
+    image: "/images/fmcg.jpg",
     tagline: "Streamline distribution, ensure compliance, scale fast",
     desc: "End-to-end ERP for FMCG — batch management, expiry tracking, and multi-channel distribution.",
     headline: "FMCG Operations Without the Chaos",
@@ -105,6 +107,7 @@ export const industries: IndustryData[] = [
     slug: "chemical",
     label: "Chemical",
     icon: FlaskConical,
+    image: "/images/chemical.jpg",
     tagline: "Hazmat compliance, batch traceability, and regulatory reporting",
     desc: "Chemical industry ERP with hazardous material compliance, batch traceability, and safety documentation.",
     headline: "Safety-First Chemical Operations",
@@ -161,6 +164,7 @@ export const industries: IndustryData[] = [
     slug: "plastic",
     label: "Plastic",
     icon: Factory,
+    image: "/images/plastic.jpg",
     tagline: "Precision manufacturing for plastics — from granule to finished goods",
     desc: "Plastic manufacturing ERP with raw material tracking, production scheduling, and quality control.",
     headline: "Precision Manufacturing for Plastics",
@@ -217,6 +221,7 @@ export const industries: IndustryData[] = [
     slug: "pharma",
     label: "Pharmaceuticals",
     icon: Stethoscope,
+    image: "/images/pharma.jpg",
     tagline: "End-to-end pharma compliance with zero compromise",
     desc: "Pharmaceutical ERP with Schedule M compliance, batch recall management, and cold-chain monitoring.",
     headline: "Pharma Compliance at Every Stage",
@@ -273,6 +278,7 @@ export const industries: IndustryData[] = [
     slug: "trading",
     label: "Trading",
     icon: BarChart3,
+    image: "/images/trading.jpg",
     tagline: "Multi-location trading with a single unified view",
     desc: "Trading ERP with multi-location inventory, margin analysis, and supplier relationship management.",
     headline: "Multi-Location Trading, Unified View",
@@ -329,6 +335,7 @@ export const industries: IndustryData[] = [
     slug: "engineering",
     label: "Engineering",
     icon: Wrench,
+    image: "/images/engineering.jpg",
     tagline: "Engineer every detail, track every cost",
     desc: "Engineering ERP with project costing, BOM management, and preventive maintenance scheduling.",
     headline: "Engineer Every Detail, Track Every Cost",
@@ -385,6 +392,7 @@ export const industries: IndustryData[] = [
     slug: "process-manufacturing",
     label: "Process Manufacturing",
     icon: Settings,
+    image: "/images/process.jpg",
     tagline: "Recipe management, yield optimisation, full batch control",
     desc: "Process manufacturing ERP with recipe management, yield tracking, and production costing.",
     headline: "Process Manufacturing, Perfected",
@@ -441,6 +449,7 @@ export const industries: IndustryData[] = [
     slug: "education",
     label: "Education",
     icon: GraduationCap,
+    image: "/images/education.jpg",
     tagline: "Modern ERP for modern education institutions",
     desc: "Education ERP with student lifecycle, fee management, timetable automation, and parent communication.",
     headline: "Modern ERP for Modern Education",

@@ -8,36 +8,42 @@ const modules = [
     name: "Inventory Management",
     desc: "Multi-location stock tracking, automated reorder points, barcode scanning, and batch traceability.",
     href: "/features#inventory",
+    image: "/images/inventory.jpg",
   },
   {
     icon: CreditCard,
     name: "Finance & Accounting",
     desc: "Multi-currency invoicing, automated reconciliation, real-time P&L, and GST/VAT compliance.",
     href: "/features#finance",
+    image: "/images/finance.jpg",
   },
   {
     icon: Users,
     name: "HR & Payroll",
     desc: "Employee lifecycle management, automated payroll with tax calculations, and self-service portals.",
     href: "/features#hr",
+    image: "/images/hr.jpg",
   },
   {
     icon: Settings,
     name: "Production Planning",
     desc: "Bill of materials, work orders, shop-floor tracking, and quality control checkpoints.",
     href: "/features#production",
+    image: "/images/production.jpg",
   },
   {
     icon: BarChart3,
     name: "Sales & CRM",
     desc: "Visual pipeline management, lead scoring, quote generation, and customer health dashboards.",
     href: "/features#crm",
+    image: "/images/sales.jpg",
   },
   {
     icon: Shield,
     name: "Compliance & Reporting",
     desc: "Role-based access, immutable audit trails, 50+ built-in reports, and regulatory tooling.",
     href: "/features#compliance",
+    image: "/images/compliance.jpg",
   },
 ];
 
@@ -59,18 +65,30 @@ export const CoreModules = () => (
           <StaggerItem key={m.name}>
             <Link
               to={m.href}
-              className="group flex flex-col gap-4 rounded-2xl border border-border bg-card p-7 shadow-soft hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 h-full"
+              className="group flex flex-col rounded-2xl border border-border bg-card shadow-soft hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 h-full overflow-hidden"
             >
-              <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors duration-200">
-                <m.icon size={22} />
+              {/* Image header */}
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src={m.image}
+                  alt={m.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/55" />
+                <div className="absolute bottom-3 left-4">
+                  <div className="h-9 w-9 rounded-xl bg-white/20 backdrop-blur-sm text-white flex items-center justify-center">
+                    <m.icon size={20} />
+                  </div>
+                </div>
               </div>
-              <div className="flex-1">
-                <h3 className="font-bold text-base mb-2">{m.name}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{m.desc}</p>
+              {/* Content */}
+              <div className="flex flex-col gap-3 p-6 flex-1">
+                <h3 className="font-bold text-base">{m.name}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{m.desc}</p>
+                <span className="text-sm font-medium text-primary flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                  Learn more →
+                </span>
               </div>
-              <span className="text-sm font-medium text-primary group-hover:gap-2 flex items-center gap-1.5 transition-all">
-                Learn more →
-              </span>
             </Link>
           </StaggerItem>
         ))}

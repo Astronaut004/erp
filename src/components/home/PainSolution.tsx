@@ -4,6 +4,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/Scroll
 const items = [
   {
     icon: Database,
+    image: "/images/fragmented-data.jpg",
     problem: "Fragmented data across departments",
     solution: "Unified real-time dashboard",
     solutionDesc:
@@ -11,6 +12,7 @@ const items = [
   },
   {
     icon: Clock,
+    image: "/images/manual-reporting.jpg",
     problem: "Manual reporting taking days",
     solution: "Automated reports in minutes",
     solutionDesc:
@@ -18,6 +20,7 @@ const items = [
   },
   {
     icon: ShieldCheck,
+    image: "/images/compliance.jpg",
     problem: "Compliance gaps in regulated industries",
     solution: "Built-in audit trails",
     solutionDesc:
@@ -42,15 +45,23 @@ export const PainSolution = () => (
         {items.map((item) => (
           <StaggerItem key={item.problem}>
             <div className="rounded-2xl border border-border bg-white overflow-hidden shadow-soft h-full flex flex-col">
-              {/* Problem header */}
-              <div className="bg-red-50 border-b border-red-100 px-6 py-5">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="h-9 w-9 rounded-lg bg-red-100 text-red-500 flex items-center justify-center shrink-0">
-                    <item.icon size={18} />
+              {/* Image header */}
+              <div className="relative h-40 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.problem}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-red-900/30 to-red-900/70" />
+                <div className="absolute inset-0 flex flex-col justify-end px-5 pb-4">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <div className="h-7 w-7 rounded-lg bg-white/20 backdrop-blur-sm text-white flex items-center justify-center shrink-0">
+                      <item.icon size={14} />
+                    </div>
+                    <p className="text-xs font-semibold text-red-200 uppercase tracking-wider">Pain Point</p>
                   </div>
-                  <p className="text-xs font-semibold text-red-500 uppercase tracking-wider">Pain Point</p>
+                  <p className="font-semibold text-white text-sm leading-snug">{item.problem}</p>
                 </div>
-                <p className="font-semibold text-red-800 text-base leading-snug">{item.problem}</p>
               </div>
               {/* Solution */}
               <div className="px-6 py-5 flex-1">

@@ -40,28 +40,40 @@ const IndustryPage = () => {
       >
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-white/5 -translate-y-1/3 translate-x-1/4 pointer-events-none" />
         <div className="container relative">
-          <ScrollReveal>
-            <div className="max-w-3xl">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-12 w-12 rounded-xl bg-white/20 text-white flex items-center justify-center">
-                  <Icon size={24} />
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <ScrollReveal direction="left">
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-12 w-12 rounded-xl bg-white/20 text-white flex items-center justify-center">
+                    <Icon size={24} />
+                  </div>
+                  <span className="text-sm font-semibold text-[#F59E0B] uppercase tracking-wider">
+                    {data.label} Solution
+                  </span>
                 </div>
-                <span className="text-sm font-semibold text-[#F59E0B] uppercase tracking-wider">
-                  {data.label} Solution
-                </span>
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
+                  {data.headline}
+                </h1>
+                <p className="text-lg text-white/75 leading-relaxed mb-8">{data.subtext}</p>
+                <Link
+                  to={`/contact?industry=${data.slug}`}
+                  className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-white font-semibold px-7 py-3.5 rounded-full transition-colors shadow-lg"
+                >
+                  Book a demo for {data.label} <ArrowRight size={16} />
+                </Link>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
-                {data.headline}
-              </h1>
-              <p className="text-lg text-white/75 leading-relaxed mb-8 max-w-2xl">{data.subtext}</p>
-              <Link
-                to={`/contact?industry=${data.slug}`}
-                className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-white font-semibold px-7 py-3.5 rounded-full transition-colors shadow-lg"
-              >
-                Book a demo for {data.label} <ArrowRight size={16} />
-              </Link>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+            <ScrollReveal direction="right" className="hidden lg:block">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={data.image}
+                  alt={data.label}
+                  className="w-full h-72 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/50 to-transparent" />
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 

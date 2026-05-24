@@ -23,15 +23,29 @@ export const IndustrySolutions = () => (
             <StaggerItem key={ind.slug}>
               <Link
                 to={`/solutions/${ind.slug}`}
-                className="group flex flex-col gap-3 rounded-xl border border-border bg-card p-6 shadow-soft hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 h-full hover:-translate-y-0.5"
+                className="group flex flex-col rounded-xl border border-border bg-card shadow-soft hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 h-full hover:-translate-y-0.5 overflow-hidden"
               >
-                <div className="h-10 w-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors duration-200">
-                  <Icon size={20} />
+                {/* Card image */}
+                <div className="relative h-36 overflow-hidden">
+                  <img
+                    src={ind.image}
+                    alt={ind.label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60" />
+                  <div className="absolute bottom-3 left-4">
+                    <div className="h-8 w-8 rounded-lg bg-white/20 backdrop-blur-sm text-white flex items-center justify-center">
+                      <Icon size={16} />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-base">{ind.label}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{ind.desc}</p>
-                <div className="flex items-center gap-1 text-xs text-primary font-medium mt-auto group-hover:gap-2 transition-all duration-200">
-                  View solution <ArrowRight size={12} />
+                {/* Card content */}
+                <div className="flex flex-col gap-2.5 p-5 flex-1">
+                  <h3 className="font-semibold text-base">{ind.label}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{ind.desc}</p>
+                  <div className="flex items-center gap-1 text-xs text-primary font-medium mt-auto group-hover:gap-2 transition-all duration-200">
+                    View solution <ArrowRight size={12} />
+                  </div>
                 </div>
               </Link>
             </StaggerItem>

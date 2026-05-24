@@ -53,10 +53,22 @@ export const IndustrySolutionsTabs = () => {
         <div className="grid lg:grid-cols-2 gap-10 items-start">
           <div key={active.slug}>
             <ScrollReveal direction="left">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-11 w-11 rounded-xl bg-primary text-white flex items-center justify-center">
-                  <ActiveIcon size={22} />
+              {/* Industry image */}
+              <div className="relative h-48 rounded-2xl overflow-hidden mb-6 shadow-soft">
+                <img
+                  src={active.image}
+                  alt={active.label}
+                  className="w-full h-full object-cover transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#1E1B4B]/70 to-transparent" />
+                <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                  <div className="h-9 w-9 rounded-xl bg-white/20 backdrop-blur-sm text-white flex items-center justify-center">
+                    <ActiveIcon size={18} />
+                  </div>
+                  <span className="text-white font-semibold text-sm">{active.label}</span>
                 </div>
+              </div>
+              <div className="flex items-center gap-3 mb-4">
                 <div>
                   <h3 className="text-xl font-bold text-slate-900">{active.headline}</h3>
                   <p className="text-sm text-muted-foreground">{active.tagline}</p>

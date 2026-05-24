@@ -13,6 +13,7 @@ import {
 const allFeatures: DetailItem[] = [
   {
     icon: CreditCard,
+    image: "/images/finance.jpg",
     label: "Finance & Accounting",
     tagline: "Real-time financials, global compliance built in.",
     desc: "Multi-currency invoicing, automated reconciliation, real-time P&L dashboards, and tax compliance tools built for global operations.",
@@ -28,6 +29,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Box,
+    image: "/images/inventory.jpg",
     label: "Inventory & Warehousing",
     tagline: "Always know what you have — and where it is.",
     desc: "Multi-location tracking, automated reorder points, barcode/QR scanning, batch management, and dead-stock alerts.",
@@ -43,6 +45,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Users,
+    image: "/images/hr.jpg",
     label: "HR & Payroll",
     tagline: "Manage your people, not your paperwork.",
     desc: "Employee lifecycle management, automated payroll with tax calculations, leave tracking, org charts, and self-service portals.",
@@ -58,6 +61,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: BarChart3,
+    image: "/images/sales.jpg",
     label: "Sales & CRM",
     tagline: "Close more deals. Keep every customer.",
     desc: "Visual pipeline management, lead scoring with AI, email sequences, quote generation, and customer health scores.",
@@ -73,6 +77,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: FileText,
+    image: "/images/project-mgmt.jpg",
     label: "Project Management",
     tagline: "Deliver on time, on budget, every time.",
     desc: "Kanban, Gantt, and list views. Time tracking, resource allocation, budget tracking, and milestone reporting.",
@@ -88,6 +93,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Settings,
+    image: "/images/production.jpg",
     label: "Manufacturing & MRP",
     tagline: "Produce more, waste less, ship on time.",
     desc: "Bill of materials, work orders, production scheduling, quality control checklists, and shop floor terminals.",
@@ -103,6 +109,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Shield,
+    image: "/images/compliance.jpg",
     label: "Compliance & Audit",
     tagline: "Stay compliant. Stay audit-ready. Always.",
     desc: "Role-based access control, complete audit trails, GDPR/SOC2 tooling, data retention policies, and IP whitelisting.",
@@ -118,6 +125,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Zap,
+    image: "/images/automation.jpg",
     label: "Automation Engine",
     tagline: "200+ triggers. Zero code. Infinite possibilities.",
     desc: "Visual workflow builder with 200+ triggers. Automate approvals, notifications, data sync, and cross-module actions with zero code.",
@@ -133,6 +141,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Globe,
+    image: "/images/multi-entity.jpg",
     label: "Multi-entity Support",
     tagline: "One login. Every company. Consolidated view.",
     desc: "Manage multiple companies, branches, and legal entities from a single dashboard with consolidated reporting.",
@@ -148,6 +157,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Layers,
+    image: "/images/custom-fields.jpg",
     label: "Custom Fields & Views",
     tagline: "Mould the platform to your exact workflow.",
     desc: "Extend any module with custom fields, formulas, and filtered views. Build exactly the workspace your team needs.",
@@ -163,6 +173,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: RefreshCw,
+    image: "/images/data-migration.jpg",
     label: "Data Import & Migration",
     tagline: "Switch without losing a single record.",
     desc: "Bulk import from CSV, Excel, or directly from QuickBooks, SAP, and Xero. Full migration support included.",
@@ -178,6 +189,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Database,
+    image: "/images/reporting.jpg",
     label: "Reporting & Analytics",
     tagline: "50+ reports. Infinite insights.",
     desc: "50+ built-in reports, custom report builder, scheduled exports, and real-time KPI dashboards per department.",
@@ -193,6 +205,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Bell,
+    image: "/images/notifications.jpg",
     label: "Notifications & Alerts",
     tagline: "The right alert, to the right person, at the right time.",
     desc: "Configurable alerts via email, Slack, SMS, and in-app. Never miss a critical approval, stockout, or deadline.",
@@ -208,6 +221,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Plug,
+    image: "/images/integrations.jpg",
     label: "Integrations & API",
     tagline: "Connect everything. Sync everywhere.",
     desc: "REST API, webhooks, and native integrations with Stripe, Shopify, Slack, Google Workspace, and 100+ more.",
@@ -223,6 +237,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: LineChart,
+    image: "/images/trading.jpg",
     label: "Forecasting",
     tagline: "See tomorrow's challenges — today.",
     desc: "AI-powered demand forecasting, cash flow projections, and capacity planning to stay ahead of growth.",
@@ -238,6 +253,7 @@ const allFeatures: DetailItem[] = [
   },
   {
     icon: Lock,
+    image: "/images/security.jpg",
     label: "Enterprise Security",
     tagline: "Bank-grade security. Enterprise-grade trust.",
     desc: "SSO/SAML, 2FA, encryption at rest and in transit, 99.99% SLA, and dedicated infrastructure options.",
@@ -280,14 +296,30 @@ const Features = () => {
               <StaggerItem key={f.label}>
                 <button
                   onClick={() => setSelected(f)}
-                  className="group w-full text-left rounded-xl border border-border bg-card p-6 shadow-soft hover:shadow-card-hover transition-all duration-300 h-full flex flex-col cursor-pointer hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="group w-full text-left rounded-xl border border-border bg-card shadow-soft hover:shadow-card-hover transition-all duration-300 h-full flex flex-col cursor-pointer hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary overflow-hidden"
                 >
-                  <div className="mb-4 inline-flex items-center justify-center h-10 w-10 rounded-lg bg-primary/10 text-primary transition-colors duration-200 group-hover:bg-primary group-hover:text-primary-foreground">
-                    <f.icon size={20} />
+                  {/* Image header */}
+                  {f.image && (
+                    <div className="relative h-36 overflow-hidden shrink-0">
+                      <img
+                        src={f.image}
+                        alt={f.label}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/15 to-black/55" />
+                      <div className="absolute bottom-2.5 left-3.5">
+                        <div className="h-7 w-7 rounded-lg bg-white/20 backdrop-blur-sm text-white flex items-center justify-center">
+                          <f.icon size={14} />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {/* Content */}
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="font-semibold mb-1.5">{f.label}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{f.desc}</p>
+                    <p className="text-xs text-primary font-medium mt-auto pt-3">Learn more →</p>
                   </div>
-                  <h3 className="font-semibold mb-2">{f.label}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                  <p className="text-xs text-primary font-medium mt-auto pt-3">Learn more →</p>
                 </button>
               </StaggerItem>
             ))}

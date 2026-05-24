@@ -18,6 +18,7 @@ export interface DetailItem {
   highlights: string[];
   badge?: string;
   highlight?: boolean;
+  image?: string;
 }
 
 interface DetailModalProps {

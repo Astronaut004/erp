@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -257,6 +258,12 @@ const Features = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Features — 16 Integrated Modules | LiteLink ERP by Rigvedam Solutions</title>
+        <meta name="description" content="Explore LiteLink ERP's 16 integrated modules — Finance, Inventory, HR, Sales, Manufacturing, Compliance, Automation, and more. One platform for your entire business." />
+        <meta property="og:title" content="LiteLink ERP Features — 16 Integrated Modules" />
+        <meta property="og:url" content="https://erp-chi-plum.vercel.app/features" />
+      </Helmet>
       <Navbar />
       <section className="py-24 md:py-32 bg-gradient-hero bg-gradient-mesh">
         <div className="container">

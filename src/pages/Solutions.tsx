@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { IndustrySolutions } from "@/components/home/IndustrySolutions";
@@ -16,6 +17,12 @@ const locations = [
 
 const Solutions = () => (
   <div className="min-h-screen">
+    <Helmet>
+      <title>Industry Solutions | LiteLink ERP by Rigvedam Solutions</title>
+      <meta name="description" content="LiteLink ERP industry solutions for FMCG, Chemical, Plastic, Pharmaceuticals, Trading, Engineering, Process Manufacturing, and Education — built for Indian industry." />
+      <meta property="og:title" content="Industry Solutions | LiteLink ERP" />
+      <meta property="og:url" content="https://erp-chi-plum.vercel.app/solutions" />
+    </Helmet>
     <Navbar />
 
     <section className="py-24 md:py-32 bg-gradient-hero bg-gradient-mesh">

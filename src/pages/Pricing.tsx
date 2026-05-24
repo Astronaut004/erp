@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
@@ -78,6 +79,12 @@ const faqs = [
 
 const Pricing = () => (
   <div className="min-h-screen">
+    <Helmet>
+      <title>Pricing — Simple & Transparent | LiteLink ERP by Rigvedam Solutions</title>
+      <meta name="description" content="LiteLink ERP pricing — Starter, Business, and Enterprise plans. No hidden fees, 14-day free trial, and per-user monthly pricing starting at $49/user/mo." />
+      <meta property="og:title" content="LiteLink ERP Pricing — Simple & Transparent" />
+      <meta property="og:url" content="https://erp-chi-plum.vercel.app/pricing" />
+    </Helmet>
     <Navbar />
 
     <section className="py-24 md:py-32 bg-gradient-hero bg-gradient-mesh">

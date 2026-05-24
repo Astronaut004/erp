@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
@@ -19,6 +20,12 @@ const values = [
 
 const About = () => (
   <div className="min-h-screen">
+    <Helmet>
+      <title>About Us | LiteLink ERP by Rigvedam Solutions</title>
+      <meta name="description" content="Learn about LiteLink ERP and Rigvedam Solutions — the team and values behind India's modern ERP platform for FMCG, Chemical, Pharma, Trading, and more." />
+      <meta property="og:title" content="About LiteLink ERP | Rigvedam Solutions" />
+      <meta property="og:url" content="https://erp-chi-plum.vercel.app/about" />
+    </Helmet>
     <Navbar />
 
     <section className="py-24 md:py-32 bg-gradient-hero bg-gradient-mesh">

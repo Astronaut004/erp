@@ -18,6 +18,11 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
+        brand: {
+          indigo: '#1E1B4B',
+          blue: '#4F46E5',
+          amber: '#F59E0B',
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

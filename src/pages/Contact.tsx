@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -45,6 +46,12 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Contact Us — Book a Demo | LiteLink ERP by Rigvedam Solutions</title>
+        <meta name="description" content="Book a demo, ask about pricing, or get migration help. Contact the LiteLink ERP team — we respond within one business day." />
+        <meta property="og:title" content="Contact LiteLink ERP | Book a Demo" />
+        <meta property="og:url" content="https://erp-chi-plum.vercel.app/contact" />
+      </Helmet>
       <Navbar />
 
       <section className="py-24 md:py-32 bg-gradient-hero bg-gradient-mesh">
